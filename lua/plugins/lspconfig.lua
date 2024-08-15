@@ -66,6 +66,7 @@ function Plugin.config()
       'html',
       'cssls',
       'lua_ls',
+			"gopls",
     },
     handlers = {
       -- See :help mason-lspconfig-dynamic-server-setup

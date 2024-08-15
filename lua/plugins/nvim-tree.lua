@@ -24,6 +24,21 @@ Plugin.opts = {
 
 function Plugin.init()
   vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<cr>')
+	  -- 自动打开 Nvim-Tree
+  vim.api.nvim_create_autocmd("VimEnter", {
+      callback = function(data)
+          -- 仅当 Neovim 启动时没有指定文件时，才打开 Nvim-Tree
+          local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
+          local directory = vim.fn.isdirectory(data.file) == 1
+
+          if not no_name and not directory then
+              return
+          end
+
+          -- 打开 Nvim-Tree
+          require("nvim-tree.api").tree.open()
+      end
+  })
 end
 
 return Plugin
