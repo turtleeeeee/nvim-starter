@@ -31,6 +31,7 @@ Plugin.opts = {
     'vimdoc',
     'css',
     'json',
+		'swift',
 		'go'
   },
 }
