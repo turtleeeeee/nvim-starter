@@ -17,6 +17,7 @@ function Plugin.init()
   vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<cr>')
   vim.keymap.set('n', '<leader>fd', '<cmd>Telescope diagnostics<cr>')
   vim.keymap.set('n', '<leader>fs', '<cmd>Telescope current_buffer_fuzzy_find<cr>')
+  vim.keymap.set('n', '<leader>p', '<cmd>Telescope lsp_document_symbols<cr>')
 end
 
 function Plugin.config()

@@ -24,6 +24,7 @@ Plugin.opts = {
 
 function Plugin.init()
   vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<cr>')
+  vim.keymap.set('n', '<leader>j', '<cmd>NvimTreeFindFile<CR><cr>')
 	  -- 自动打开 Nvim-Tree
   vim.api.nvim_create_autocmd("VimEnter", {
       callback = function(data)

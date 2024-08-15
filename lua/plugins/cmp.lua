@@ -88,8 +88,11 @@ function Plugin.config()
 
       ['<Tab>'] = cmp.mapping(function(fallback)
         local col = vim.fn.col('.') - 1
+				local copilot_keys = vim.fn['copilot#Accept']()
 
-        if cmp.visible() then
+				if copilot_keys ~= '' and type(copilot_keys) == 'string' then
+    			vim.api.nvim_feedkeys(copilot_keys, 'i', true)
+				elseif cmp.visible() then
           cmp.select_next_item(select_opts)
         elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
           fallback()

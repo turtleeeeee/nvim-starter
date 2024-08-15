@@ -4,7 +4,7 @@ function Plugin.config(name, opts)
 	require('auto-save').setup({
 		enabled = true,
 		-- execution_message = "AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"),
-		events = { "InsertLeave", "TextChanged" },
+		events = { "VimLeave", "BufLeave" },
 		conditions = {
 			exists = true,
 			modifiable = true,
