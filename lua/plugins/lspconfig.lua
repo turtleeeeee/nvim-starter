@@ -31,7 +31,7 @@ function Plugin.init()
     severity_sort = true,
     float = {
       border = 'rounded',
-      source = 'always',
+      source = true
     },
   })
 
@@ -66,7 +66,7 @@ function Plugin.config()
       'html',
       'cssls',
       'lua_ls',
-			"gopls",
+			"gopls@0.15.3",
     },
     handlers = {
       -- See :help mason-lspconfig-dynamic-server-setup

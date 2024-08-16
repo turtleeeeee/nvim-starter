@@ -9,6 +9,9 @@ Plugin.opts = {
   highlight = {
     enable = true,
   },
+	indent = {
+		enable = true,
+	},
   -- :help nvim-treesitter-textobjects-modules
   textobjects = {
     select = {
