@@ -38,3 +38,4 @@ Plugin.opts = {
 	},
 }
 
+return Plugin
