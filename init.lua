@@ -3,7 +3,7 @@ local load = function(mod)
 	require(mod)
 end
 
-vim.o.sessionoptions = "buffers,curdir,folds,help,tabpages,winsize"
+vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 load('user.settings')
 load('user.commands')
 load('user.keymaps')

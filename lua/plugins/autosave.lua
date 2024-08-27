@@ -1,5 +1,7 @@
 local Plugin = { 'Pocco81/auto-save.nvim' }
 
+-- Plugin.events = { "VimLeave"}
+
 function Plugin.config(name, opts)
 	require('auto-save').setup({
 		enabled = true,
@@ -14,6 +16,7 @@ function Plugin.config(name, opts)
 		clean_command_line_interval = 0,
 		debounce_delay = 135,
 	})
+  vim.api.nvim_set_keymap("n", "<leader>n", ":ASToggle<CR>", {})
 end
 
 return Plugin
