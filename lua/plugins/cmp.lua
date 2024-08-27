@@ -88,9 +88,9 @@ function Plugin.config()
 
       ['<Tab>'] = cmp.mapping(function(fallback)
         local col = vim.fn.col('.') - 1
-				local copilot_keys = vim.fn['copilot#Accept']()
+				local copilot_keys = vim.fn['copilot#GetDisplayedSuggestion']()
 
-				if copilot_keys ~= '' and type(copilot_keys) == 'string' then
+				if copilot_keys.text ~= '' and type(copilot_keys) == 'string' then
     			vim.api.nvim_feedkeys(copilot_keys, 'i', true)
 				elseif cmp.visible() then
           cmp.select_next_item(select_opts)

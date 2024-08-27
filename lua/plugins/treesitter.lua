@@ -35,7 +35,17 @@ Plugin.opts = {
 		'css',
 		'json',
 		'swift',
-		'go'
+		'go',
+    'python',
+    'bash',
+    'c',
+    'cpp',
+    'rust',
+    'html',
+    'yaml',
+    'json',
+    'toml',
+    'markdown'
 	},
 }
 

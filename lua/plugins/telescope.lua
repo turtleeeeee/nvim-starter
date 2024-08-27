@@ -18,6 +18,9 @@ function Plugin.init()
 	vim.keymap.set('n', '<leader>fd', '<cmd>Telescope diagnostics<cr>')
 	vim.keymap.set('n', '<leader>fs', '<cmd>Telescope current_buffer_fuzzy_find<cr>')
 	vim.keymap.set('n', '<leader>p', '<cmd>Telescope lsp_document_symbols<cr>')
+  vim.keymap.set('n', '<leader>pw', '<cmd>Telescope lsp_workspace_symbols<cr>')
+  vim.keymap.set('n', '<leader>pr', '<cmd>Telescope lsp_references<cr>')
+  vim.keymap.set('n', '<leader>r', '<cmd>Telescope resume<cr>')
 end
 
 function Plugin.config()

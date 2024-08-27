@@ -89,7 +89,8 @@ function Plugin.config()
 			'html',
 			'cssls',
 			'lua_ls',
-			"gopls@0.15.3",
+			"gopls@v0.15.3",
+      "pyright",
 		},
 		handlers = {
 			-- See :help mason-lspconfig-dynamic-server-setup
