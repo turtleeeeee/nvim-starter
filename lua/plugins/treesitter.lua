@@ -45,7 +45,8 @@ Plugin.opts = {
     'yaml',
     'json',
     'toml',
-    'markdown'
+    'markdown',
+		'markdown_inline',
 	},
 }
 
@@ -63,13 +64,6 @@ function Plugin.config(name, opts)
 		return "No function"
 	end
 
-	-- 在命令行显示当前函数
-	vim.cmd [[
-    command! ShowCurrentFunction :lua print(CurrentFunction())
-  ]]
-
-	-- 将 ShowCurrentFunction 命令绑定到 <leader>cf 快捷键
-	vim.api.nvim_set_keymap('n', '<leader>cf', ':ShowCurrentFunction<CR>', { noremap = true, silent = true })
 end
 
 return Plugin
