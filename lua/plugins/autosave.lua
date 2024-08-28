@@ -1,12 +1,13 @@
 local Plugin = { 'Pocco81/auto-save.nvim' }
 
 -- Plugin.events = { "VimLeave"}
+Plugin.trigger_events = { "VimLeave", "BufLeave" }
 
 function Plugin.config(name, opts)
 	require('auto-save').setup({
 		enabled = true,
 		-- execution_message = "AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"),
-		events = { "VimLeave", "BufLeave" },
+		trigger_events = { "VimLeave", "BufLeave" },
 		conditions = {
 			exists = true,
 			modifiable = true,

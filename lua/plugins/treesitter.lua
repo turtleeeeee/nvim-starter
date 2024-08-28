@@ -47,6 +47,7 @@ Plugin.opts = {
     'toml',
     'markdown',
 		'markdown_inline',
+		'sql',
 	},
 }
 
