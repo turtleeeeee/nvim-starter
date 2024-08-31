@@ -43,13 +43,15 @@ function Plugin.config()
 			documentation = cmp.config.window.bordered(),
 		},
 		formatting = {
-			fields = { 'menu', 'abbr', 'kind' },
+			fields = { 'menu', 'abbr', 'kind', },
+
 			format = function(entry, item)
 				local menu_icon = {
 					nvim_lsp = 'λ',
 					luasnip = '⋗',
 					buffer = 'Ω',
 					path = '🖫',
+					copilot = '',
 				}
 
 				item.menu = menu_icon[entry.source.name]

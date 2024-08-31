@@ -18,7 +18,7 @@ vim.o.clipboard = "unnamedplus"
 
 vim.opt.termguicolors = true
 vim.opt.cursorline = true
-
+vim.g.python3_host_prog = '/Library/Frameworks/Python.framework/Versions/3.11/bin/python3'
 
 
 -- -- 自定义会话管理插件
