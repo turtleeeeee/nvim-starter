@@ -10,6 +10,7 @@ local Plugins = {
   {'joshdick/onedark.vim'},
   {'tanvirtin/monokai.nvim'},
   {'lunarvim/darkplus.nvim'},
+	{'rebelot/kanagawa.nvim'},
 }
 
 return Plugins

@@ -4,6 +4,7 @@ local user = {}
 Plugin.dependencies = {
 	{ 'hrsh7th/cmp-nvim-lsp' },
 	{ 'williamboman/mason-lspconfig.nvim' },
+	-- { 'jose-elias-alvarez/null-ls.nvim' },
 }
 
 Plugin.cmd = { 'LspInfo', 'LspInstall', 'LspUnInstall' }
@@ -77,7 +78,7 @@ function Plugin.config()
 					end
 				end
 			end
-			vim.lsp.buf.format({ async = false })
+			vim.lsp.buf.format({ async = true })
 		end
 	})
 
@@ -90,7 +91,7 @@ function Plugin.config()
 			'cssls',
 			'lua_ls',
 			"gopls@v0.15.3",
-      "pyright",
+			"pyright",
 		},
 		handlers = {
 			-- See :help mason-lspconfig-dynamic-server-setup
@@ -115,6 +116,13 @@ function Plugin.config()
 			end
 		}
 	})
+
+	-- local null_ls = require('null-ls')
+	-- null_ls.setup({
+	-- 	sources = {
+	-- 		null_ls.builtins.formatting.swiftformat,
+	-- 	},
+	-- })
 end
 
 function user.on_attach()

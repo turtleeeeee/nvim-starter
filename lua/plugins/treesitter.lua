@@ -1,6 +1,7 @@
 local Plugin = { 'nvim-treesitter/nvim-treesitter' }
 
 Plugin.dependencies = {
+	{ 'nvim-treesitter/nvim-treesitter-context' },
 	{ 'nvim-treesitter/nvim-treesitter-textobjects' }
 }
 
@@ -36,16 +37,16 @@ Plugin.opts = {
 		'json',
 		'swift',
 		'go',
-    'python',
-    'bash',
-    'c',
-    'cpp',
-    'rust',
-    'html',
-    'yaml',
-    'json',
-    'toml',
-    'markdown',
+		'python',
+		'bash',
+		'c',
+		'cpp',
+		'rust',
+		'html',
+		'yaml',
+		'json',
+		'toml',
+		'markdown',
 		'markdown_inline',
 		'sql',
 	},
@@ -53,18 +54,21 @@ Plugin.opts = {
 
 function Plugin.config(name, opts)
 	require('nvim-treesitter.configs').setup(opts)
-	-- 定义 CurrentFunction 函数
-	function CurrentFunction()
-		local node = require 'nvim-treesitter.ts_utils'.get_node_at_cursor()
-		while node do
-			if node:type() == 'function' or node:type() == 'method_declaration' or node:type() == 'function_definition' then
-				return vim.treesitter.get_node_text(node, 0)
-			end
-			node = node:parent()
-		end
-		return "No function"
-	end
-
+	require('treesitter-context').setup(
+		{
+			enable = true,
+			max_lines = 0,        -- How many lines the window should span. Values <= 0 mean no limit.
+			min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+			line_numbers = true,
+			multiline_threshold = 20, -- Maximum number of lines to show for a single context
+			trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+			mode = 'cursor',      -- Line used to calculate context. Choices: 'cursor', 'topline'
+			-- Separator between context and content. Should be a single character string, like '-'.
+			-- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
+			separator = nil,
+			zindex = 20, -- The Z-index of the context window
+			on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
+		})
 end
 
 return Plugin

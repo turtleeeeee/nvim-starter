@@ -70,7 +70,13 @@ function Plugin.config()
 			['<C-d>'] = cmp.mapping.scroll_docs(4),
 
 			['<C-e>'] = cmp.mapping.abort(),
-			['<C-y>'] = cmp.mapping.confirm({ select = true }),
+			['<C-y>'] = cmp.mapping(function()
+				if cmp.visible() then
+					cmp.confirm(select_opts)
+				else
+					cmp.complete()
+				end
+			end, { 'i', 's' }),
 			['<CR>'] = cmp.mapping.confirm({ select = false }),
 
 			['<C-f>'] = cmp.mapping(function(fallback)
