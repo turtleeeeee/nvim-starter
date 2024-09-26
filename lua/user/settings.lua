@@ -6,13 +6,13 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.hlsearch = true
 vim.opt.wrap = true
-vim.opt.breakindent = true
+-- vim.opt.breakindent = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = false
-vim.opt.autoindent = true
-vim.opt.cindent = true
-vim.opt.smartindent = true
+-- vim.opt.autoindent = true
+-- vim.opt.cindent = true
+-- vim.opt.smartindent = true
 vim.opt.signcolumn = 'yes'
 vim.o.clipboard = "unnamedplus"
 
@@ -20,8 +20,16 @@ vim.opt.termguicolors = true
 vim.opt.cursorline = true
 vim.g.python3_host_prog = '/Library/Frameworks/Python.framework/Versions/3.11/bin/python3'
 
+-- 禁用 ripgrep 忽略 .gitignore
+-- vim.opt.grepprg = "rg --vimgrep --no-ignore"
+-- vim.opt.grepformat = "%f:%l:%c:%m"
 
--- -- 自定义会话管理插件
+-- 禁用 fd 忽略 .gitignore
+-- vim.g.telescope_fd_opts = { "--no-ignore" }
+
+
+
+-- -- -- 自定义会话管理插件
 -- local session_dir = vim.fn.stdpath('data') .. '/sessions/'
 --
 -- -- 创建会话目录（如果不存在）

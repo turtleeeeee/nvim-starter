@@ -59,39 +59,42 @@ function Plugin.config()
 		callback = user.on_attach
 	})
 
-	vim.api.nvim_create_autocmd("BufWritePre", {
-		pattern = "*.go",
-		callback = function()
-			local params = vim.lsp.util.make_range_params()
-			params.context = { only = { "source.organizeImports" } }
-			-- buf_request_sync defaults to a 1000ms timeout. Depending on your
-			-- machine and codebase, you may want longer. Add an additional
-			-- argument after params if you find that you have to write the file
-			-- twice for changes to be saved.
-			-- E.g., vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 3000)
-			local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params)
-			for cid, res in pairs(result or {}) do
-				for _, r in pairs(res.result or {}) do
-					if r.edit then
-						local enc = (vim.lsp.get_client_by_id(cid) or {}).offset_encoding or "utf-16"
-						vim.lsp.util.apply_workspace_edit(r.edit, enc)
-					end
-				end
-			end
-			vim.lsp.buf.format({ async = true })
-		end
-	})
+	-- vim.api.nvim_create_autocmd("BufWritePre", {
+	-- 	pattern = "*.go",
+	-- 	callback = function()
+	-- 		local params = vim.lsp.util.make_range_params()
+	-- 		params.context = { only = { "source.organizeImports" } }
+	-- 		-- buf_request_sync defaults to a 1000ms timeout. Depending on your
+	-- 		-- machine and codebase, you may want longer. Add an additional
+	-- 		-- argument after params if you find that you have to write the file
+	-- 		-- twice for changes to be saved.
+	-- 		-- E.g., vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 3000)
+	-- 		local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params)
+	-- 		for cid, res in pairs(result or {}) do
+	-- 			for _, r in pairs(res.result or {}) do
+	-- 				if r.edit then
+	-- 					local enc = (vim.lsp.get_client_by_id(cid) or {}).offset_encoding or "utf-16"
+	-- 					vim.lsp.util.apply_workspace_edit(r.edit, enc)
+	-- 				end
+	-- 			end
+	-- 		end
+	-- 		vim.lsp.buf.format({ async = true })
+	-- 	end
+	-- })
 
 	-- See :help mason-lspconfig-settings
 	require('mason-lspconfig').setup({
 		ensure_installed = {
 			'eslint',
-			'tsserver',
+			'ts_ls',
 			'html',
 			'cssls',
 			'lua_ls',
-			"gopls@v0.15.3",
+			-- "gopls",
+			-- "goimports",
 			"pyright",
+			"sqlls",
+			"taplo",
 		},
 		handlers = {
 			-- See :help mason-lspconfig-dynamic-server-setup
@@ -101,19 +104,59 @@ function Plugin.config()
 					capabilities = lsp_capabilities,
 				})
 			end,
-			['tsserver'] = function()
-				lspconfig.tsserver.setup({
-					capabilities = lsp_capabilities,
-					settings = {
-						completions = {
-							completeFunctionCalls = true
-						}
-					}
-				})
-			end,
+			-- ['tsserver'] = function()
+			-- 	lspconfig.tsserver.setup({
+			-- 		capabilities = lsp_capabilities,
+			-- 		settings = {
+			-- 			completions = {
+			-- 				completeFunctionCalls = true
+			-- 			}
+			-- 		}
+			-- 	})
+			-- end,
 			['lua_ls'] = function()
 				require('plugins.lsp.lua_ls')
-			end
+			end,
+			-- ['ts_ls'] = function()
+			-- 	require 'lspconfig'.ts_ls.setup {
+			-- 		init_options = {
+			-- 			plugins = {
+			-- 				{
+			-- 					name = "@vue/typescript-plugin",
+			-- 					location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
+			-- 					languages = { "javascript", "typescript", "vue" },
+			-- 				},
+			-- 			},
+			-- 		},
+			-- 		filetypes = {
+			-- 			"javascript",
+			-- 			"typescript",
+			-- 			"vue",
+			-- 		},
+			-- 	}
+			--end,
+			-- ['pyright'] = function()
+			-- 	lspconfig.pyright.setup({
+			-- 		capabilities = lsp_capabilities,
+			-- 	})
+			-- end,
+			-- ['sqlls'] = function()
+			-- 	lspconfig.sqlls.setup({
+			-- 		capabilities = lsp_capabilities,
+			-- 	})
+			-- end,
+			-- ['taplo'] = function()
+			-- 	lspconfig.taplo.setup({
+			-- 		capabilities = lsp_capabilities,
+			-- 		filetypes = { 'toml', 'tpl' },
+			-- 	})
+			-- end,
+			-- ['gopls'] = function()
+			-- 	lspconfig.gopls.setup({
+			-- 		capabilities = lsp_capabilities,
+			-- 	})
+			-- end,
+
 		}
 	})
 
