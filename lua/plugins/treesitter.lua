@@ -49,6 +49,8 @@ Plugin.opts = {
 		'markdown',
 		'markdown_inline',
 		'sql',
+		'objc',
+		'java',
 	},
 }
 
