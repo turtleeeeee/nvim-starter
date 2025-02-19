@@ -19,6 +19,25 @@ vim.o.clipboard = "unnamedplus"
 vim.opt.termguicolors = true
 vim.opt.cursorline = true
 vim.g.python3_host_prog = '/Library/Frameworks/Python.framework/Versions/3.11/bin/python3'
+vim.g.jukit_terminal = 'tmux'
+
+vim.api.nvim_create_augroup("UserSetting", { clear = true })
+vim.api.nvim_create_autocmd("BufReadPre", {
+	group = "UserSetting",
+	pattern = { "*.json", "*", "*.log" },
+	callback = function()
+		local line_count = vim.fn.line("$")
+		if line_count > 10000 or vim.fn.getfsize(vim.fn.expand("%")) > 512 * 1024 then
+			vim.cmd("syntax clear")
+			vim.cmd("syntax off")
+			vim.cmd("filetype off")
+			vim.opt.foldmethod = "manual"
+			vim.opt.swapfile = false
+			vim.opt.undofile = false
+			vim.opt.loadplugins = false
+		end
+	end
+})
 
 -- 禁用 ripgrep 忽略 .gitignore
 -- vim.opt.grepprg = "rg --vimgrep --no-ignore"

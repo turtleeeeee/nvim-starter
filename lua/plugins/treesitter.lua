@@ -51,6 +51,7 @@ Plugin.opts = {
 		'sql',
 		'objc',
 		'java',
+		'csv',
 	},
 }
 

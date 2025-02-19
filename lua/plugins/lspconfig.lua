@@ -60,6 +60,7 @@ function Plugin.config()
 	})
 
 	vim.api.nvim_create_autocmd("BufWritePre", {
+		group = group,
 		pattern = "*.go",
 		callback = function()
 			local params = vim.lsp.util.make_range_params()
