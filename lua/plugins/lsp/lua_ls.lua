@@ -36,7 +36,7 @@ lspconfig.lua_ls.setup({
 lspconfig.sourcekit.setup({
 	capabilities = lsp_capabilities,
 	cmd = { 'sourcekit-lsp' },
-	filetypes = { 'swift', 'objective-c', 'objective-cpp', 'c', 'cpp' },
+	filetypes = { 'swift', 'objective-c', 'objective-cpp', 'c', 'cpp', 'm', 'mm' },
 	--root_pattern("buildServer.json", "*.xcodeproj", "*.xcworkspace", "compile_commands.json", "Package.swift", ".git")
 	root_dir = lspconfig.util.root_pattern("Package.swift", ".git", "buildServer.json", "*.xcodeproj", "*.xcworkspace",
 		"compile_commands.json"),

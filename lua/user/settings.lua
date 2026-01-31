@@ -18,6 +18,13 @@ vim.o.clipboard = "unnamedplus"
 
 vim.opt.termguicolors = true
 vim.opt.cursorline = true
+
+-- 加快光标移动速度
+vim.opt.updatetime = 100        -- 更快的完成事件触发（默认4000ms）
+vim.opt.timeoutlen = 300        -- 按键序列等待时间（默认1000ms）
+vim.opt.ttimeoutlen = 10        -- 终端按键码超时时间（加快Esc响应）
+vim.opt.ttyfast = true          -- 快速终端连接
+vim.opt.lazyredraw = false      -- 确保实时重绘
 vim.g.python3_host_prog = '/Library/Frameworks/Python.framework/Versions/3.11/bin/python3'
 vim.g.jukit_terminal = 'tmux'
 

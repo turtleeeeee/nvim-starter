@@ -20,6 +20,7 @@ function Plugin.init()
 	vim.keymap.set('n', '<leader>p', '<cmd>Telescope lsp_document_symbols<cr>')
 	vim.keymap.set('n', '<leader>pw', '<cmd>Telescope lsp_workspace_symbols<cr>')
 	vim.keymap.set('n', '<leader>pr', '<cmd>Telescope lsp_references<cr>')
+	vim.keymap.set('n', '<leader>pi', '<cmd>Telescope lsp_implementations<cr>')
 	vim.keymap.set('n', '<leader>r', '<cmd>Telescope resume<cr>')
 end
 

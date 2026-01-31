@@ -66,6 +66,7 @@ function Plugin.config()
 	vim.keymap.set({ 'n', 'v' }, '<leader>co', '<cmd>CopilotChatOptimize<cr>')
 	vim.keymap.set({ 'n', 'v' }, '<leader>cd', '<cmd>CopilotChatDocs<cr>')
 	vim.keymap.set({ 'n', 'v' }, '<leader>ct', '<cmd>CopilotChatTests<cr>')
+	vim.keymap.set({ 'n', 'v' }, '<leader>cg', '<cmd>CopilotChatToggle<cr>')
 end
 
 return Plugin
