@@ -25,6 +25,10 @@ vim.opt.timeoutlen = 300        -- 按键序列等待时间（默认1000ms）
 vim.opt.ttimeoutlen = 10        -- 终端按键码超时时间（加快Esc响应）
 vim.opt.ttyfast = true          -- 快速终端连接
 vim.opt.lazyredraw = false      -- 确保实时重绘
+
+-- 在 bufferline 下方显示文件相对路径
+vim.opt.winbar = " %{%v:lua.require('user.winbar').get()%}"
+
 vim.g.python3_host_prog = '/Library/Frameworks/Python.framework/Versions/3.11/bin/python3'
 vim.g.jukit_terminal = 'tmux'
 
@@ -44,6 +48,25 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 			vim.opt.loadplugins = false
 		end
 	end
+})
+
+-- 自动检测文件外部改动并重新加载
+vim.opt.autoread = true
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+	group = "UserSetting",
+	pattern = "*",
+	callback = function()
+		if vim.fn.mode() ~= "c" then
+			vim.cmd("checktime")
+		end
+	end,
+})
+vim.api.nvim_create_autocmd("FileChangedShellPost", {
+	group = "UserSetting",
+	pattern = "*",
+	callback = function()
+		vim.notify("文件已在外部被修改，已自动重新加载", vim.log.levels.WARN)
+	end,
 })
 
 -- 禁用 ripgrep 忽略 .gitignore
